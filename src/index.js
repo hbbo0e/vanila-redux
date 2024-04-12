@@ -1,12 +1,9 @@
-import { createStore } from 'redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App'
 
-const plus = document.getElementById('plus');
-const minus = document.getElementById('minus');
-const number = document.querySelector("span");
-
-const reducer = (state) => {
-
-  return state;
-}
-
-const store = createStore(reducer);
+ReactDOM.render(
+  <App>
+  </App>,
+  document.getElementById('root')
+)
