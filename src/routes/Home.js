@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 function Home(){
 
@@ -7,10 +8,16 @@ function Home(){
         setText(e.target.value);
     }
 
+    function onSubmit(e){
+        e.preventDefault();
+        setText("");
+        console.log(text);
+    }
+
     return (
         <>
             <h1> To Do </h1>
-            <form>
+            <form onSubmit={onSubmit}>
                 <input type="text" value={text} onChange={onChange}/>
                 <button> Add </button>
             </form>
@@ -19,4 +26,9 @@ function Home(){
     )
 }
 
-export default "Home";
+function getCurrentState(){
+
+}
+
+export default connect(getCurrentState) (Home);
+// connect 로 getCurrentState 함수랑 Home 컴포넌트를 연결시켜준다.
