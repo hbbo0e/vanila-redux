@@ -5,26 +5,27 @@ const DELETE = "DELETE";
 
 // actionCreator 는 const 혹은 function 원하는 것으로 하면 된다. --> 그럼 둘의 차이는?
 
-export const addToDo = text => {
+const addToDo = text => {
     return {
         type: ADD,
         text
     }
 }
+// addToDo, deleteToDo 에 export 를 지워서 객체 형태로 만들어 가지고 올 것 (함수로 가지고 오면 안 되나봐)
 
-export const deleteToDo = id => {
+const deleteToDo = id => {
     return {
         type: DELETE,
-        id
+        id: parseInt(id)
     }
 }
 
-const reducer = (state = ["hi"], action) => {
+const reducer = (state = [], action) => {
     switch (action.type) {
         case ADD: 
             return [{ text: action.text, id: Date.now() }, ...state];
         case DELETE:
-            return state.filter(toDo => toDo !== action.id );
+            return state.filter(toDo => toDo.id !== action.id );
         default:
             return state;
     }
@@ -32,6 +33,9 @@ const reducer = (state = ["hi"], action) => {
 
 const store = createStore(reducer);
 
-export default store;
+export const actionCreators = {
+    addToDo,
+    deleteToDo
+}
 
-store.getState()
+export default store;
